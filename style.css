@@ -9,6 +9,7 @@ html {
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
+  text-decoration: none;
 }
 
 .flex-head, .flex-middle, .flex-footer {
@@ -57,6 +58,7 @@ body {
   flex: 75%;
   padding: 0 15px;
   overflow: auto;
+  background-color:rgb(177, 229, 238);
 }
 
 .flex-menu {
@@ -90,6 +92,7 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: unset;
+  border-radius: 10px;
 }
 
 .active {
@@ -97,7 +100,7 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
   text-align: center;
-  border-radius: 20%;
+  border-radius: 10px;
 }
 
 .active a {
@@ -110,11 +113,84 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
   text-align: center;
-  border-radius: 20%;
+  border-radius: 10px;
 }
+
 .footer {
   flex: 100%;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.projects, .repositories {
+  width: 100%;
+  display:inline-block;
+  padding: 10px;
+}
+
+.project {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color:rgb(3, 20, 45);
+  margin-bottom: 15px;
+}
+
+.projectname, .repolink {
+  width: 10%;
+  min-width: 115px;
+  max-width: 115px;
+  display: inline-block;
+  padding: 10px;
+  border-style: solid;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.repolink {
+  display: block;
+}
+
+.project a, .repo a {
+  text-decoration: none;
+  color:rgb(3, 20, 45);
+  display: inline-block;
+  border-color: skyblue;
+  border-radius: 5px;
+  border-width: 1px;
+  background-color:skyblue;
+  margin: 5px;
+  text-align: center;
+}
+
+.project a:hover, .repo a:hover {
+  font-size: larger;
+}
+
+.projectdesc {
+  width: 85%;
+  padding: 10px;
+  margin: 10px 5px;
+  display: inline-block;
+}
+
+.reposection {
+  margin: 10px;
+}
+
+.assignments, .allrepos {
+  border-bottom: rgb(3, 20, 45);
+  border-bottom-style: solid;
+  padding: 0 0 10px 0;
+}
+
+.allrepos {
+  padding: 15px 0 10px 0;
+}
+
+.flex-footer {
+  color: white;
+  background-color: steelblue;
 }
