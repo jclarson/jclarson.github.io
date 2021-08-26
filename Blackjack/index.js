@@ -1,4 +1,5 @@
-const suits = ['S','C','H','D'];
+//const suits = ['S','C','H','D'];
+const SUITS = ["♠", "♣", "♥", "♦"];
 let sum = 0;
 let dealerSum = 0;
 let message = '';
@@ -223,7 +224,7 @@ function initializeDeck() {
         value: i,
         isAce: false,
         isFaceCard: false,
-        suit: suits[s]
+        suit: SUITS[s]
       }
       deck.push(card)
     }
