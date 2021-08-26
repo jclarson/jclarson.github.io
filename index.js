@@ -56,7 +56,6 @@ function createLink(href) {
   let link = document.createElement('a');
   link.href = href;
   return link;
-  //classEl.appendChild(link);
 }
 
 function createImg(src, alt, link) {
