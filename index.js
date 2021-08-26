@@ -20,7 +20,7 @@ function addMenuItem(id) {
   link.innerText = id;
   div.className = 'menuchoice'
   div.id = id.toLowerCase();
-  if ((pageName.toLowerCase() == id.toLowerCase()) || pageTitle == 'portfolio for jason larson' || ((pageName.toLowerCase() == 'index') && (id.toLowerCase() == 'home'))) {
+  if ((pageName.toLowerCase() == id.toLowerCase()) || (pageTitle == 'portfolio for jason larson' && (id.toLowerCase() == 'home')) || ((pageName.toLowerCase() == 'index') && (id.toLowerCase() == 'home'))) {
     div.className += ' active'
   }
   if (id == 'Home') link.href = 'index.html';
