@@ -15,11 +15,12 @@ function addMenuItem(id) {
   let div = document.createElement('div');
   let link = document.createElement('a');
   let pageName = getPageName();
+  let pageTitle = document.title.toLowerCase();
   link.href = `${id.toLowerCase()}.html`;
   link.innerText = id;
   div.className = 'menuchoice'
   div.id = id.toLowerCase();
-  if ((pageName.toLowerCase() == id.toLowerCase()) || ((pageName.toLowerCase() == 'index') && (id.toLowerCase() == 'home'))) {
+  if ((pageName.toLowerCase() == id.toLowerCase()) || pageTitle == 'portfolio for jason larson' || ((pageName.toLowerCase() == 'index') && (id.toLowerCase() == 'home'))) {
     div.className += ' active'
   }
   if (id == 'Home') link.href = 'index.html';
