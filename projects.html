@@ -4,68 +4,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="styles.css" type="text/css">
     <title>Projects</title>
 </head>
 <script src="index.js" defer></script>
 <body>
-    <div class="flex-head">
-        <div class="header">
-            <h1>Projects</h1>
+    <div class="header-container">
+      <div class="header-item1 header-item">
+        <div class="header-text">
+            Projects
         </div>
-        <div class="biopic">
-            <img src="./bioPic.jpg" alt="bioPic"/>
-        </div>
+      </div>
+      <div class="header-item2 header-item">
+        <img src="./bioPic.jpg" alt="bioPic" />
+      </div>
     </div>
-    <div class="flex-middle">
-      <div class="flex-menu"></div>
-      <div class="flex-main">
-        <div class="projects">
-          <div class="project">
-            <a href="./BallMover/index.html" target="_self"><div class="projectname">BallMover</div></a>
-            <div class="projectdesc">This is a small JavaScript program to move a div "ball" around an area, changing size and color depending on the direction.</div>
+    <div class="section-container">
+      <div class="nav-container"></div>
+      <div class="main-container project-main-container">
+        <div class="project">
+          <a href="./BallMover/index.html"><div class="projectname">BallMover</div></a>
+          <div class="projectdesc">This is a small JavaScript program to move a div "ball" around an area, changing size and color depending on the direction.</div>
+        </div>
+        <div class="project">
+          <a href="./Blackjack/index.html"><div class="projectname">Blackjack</div></a>
+          <div class="projectdesc">This is a very simple Blackjack game.</div>
+        </div>
+        <div class="project">
+          <a href="./Pacman/index.html"><div class="projectname">Pacman</div></a>
+          <div class="projectdesc">The goal of this project was to move images around the screen, changing direction when hitting screen edges.
+            Click the image to start the movement.
           </div>
-          <div class="project">
-            <a href="./Blackjack/index.html"><div class="projectname">Blackjack</div></a>
-            <div class="projectdesc">This is a very simple Blackjack game.</div>
+        </div>
+        <div class="project">
+          <a href="./PacMen/index.html"><div class="projectname">PacMen</div></a>
+          <div class="projectdesc">The goal of this project was to create multiple images and move them around the screen, changing direction when hitting
+            screen edges.
           </div>
-          <div class="project">
-            <a href="./Pacman/index.html"><div class="projectname">Pacman</div></a>
-            <div class="projectdesc">The goal of this project was to move images around the screen, changing direction when hitting screen edges.
-              Click the image to start the movement.
-            </div>
+        </div>
+        <div class="project">
+          <a href="./RealTimeBusTracker/index.html"><div class="projectname">Real Time Bus Tracker</div></a>
+          <div class="projectdesc">This is a JavaScript program to display real-time bus information for buses of the MBTA (Massachusetts Bay Transportation Authority) on Route 1.
+            The original requirements were for displaying only one bus on the route.  I added all the buses, and updated the markers so that buses that were outbound
+            (having a direction of 1) are black, and I rotated the markers so that the blue ones (with a direction of 0) point upwards to indicate their general path
+            of travel on the route.
           </div>
-          <div class="project">
-            <a href="./PacMen/index.html"><div class="projectname">PacMen</div></a>
-            <div class="projectdesc">The goal of this project was to create multiple images and move them around the screen, changing direction when hitting
-              screen edges.
-            </div>
-          </div>
-          <div class="project">
-            <a href="./RealTimeBusTracker/index.html"><div class="projectname">Real Time Bus Tracker</div></a>
-            <div class="projectdesc">This is a JavaScript program to display real-time bus information for buses of the MBTA (Massachusetts Bay Transportation Authority) on Route 1.
-              The original requirements were for displaying only one bus on the route.  I added all the buses, and updated the markers so that buses that were outbound
-              (having a direction of 1) are black, and I rotated the markers so that the blue ones (with a direction of 0) point upwards to indicate their general path
-              of travel on the route.
-            </div>
-          </div>
-          <div class="project">
-            <a href="./WatchingEyes/index.html"><div class="projectname">Watching Eyes</div></a>
-            <div class="projectdesc">The goal of this project was to have 2 "eyes" that follow the mouse as it moves around the screen.</div>
-          </div>
-          <div class="project">
-            <a href="./WalkBoston/index.html"><div class="projectname">Boston Salaries</div></a>
-            <div class="projectdesc">The goal of this page was to pick out the top 5 earners in Boston (total salary + overtime) and list them out in the web page.
-              
-              Additionally, it identifies the number of people working in the city of Boston who earn over $100,000 and displays it on the web page as shown below: 
-              Number of people working in Boston earning over $100,000 is xxxx.
-            </div>
+        </div>
+        <div class="project">
+          <a href="./WatchingEyes/index.html"><div class="projectname">Watching Eyes</div></a>
+          <div class="projectdesc">The goal of this project was to have 2 "eyes" that follow the mouse as it moves around the screen.</div>
+        </div>
+        <div class="project">
+          <a href="./WalkBoston/index.html"><div class="projectname">Boston Salaries</div></a>
+          <div class="projectdesc">The goal of this page was to pick out the top 5 earners in Boston (total salary + overtime) and list them out in the web page.
+            
+            Additionally, it identifies the number of people working in the city of Boston who earn over $100,000 and displays it on the web page as shown below: 
+            Number of people working in Boston earning over $100,000 is xxxx.
           </div>
         </div>
       </div>
     </div>
-    <div class="flex-footer">
-        <div class="footer">footer</div>
+    <div class="footer-container">
     </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 addFooterInfo();
-let menuDiv = document.querySelector('.flex-menu');
+let menuDiv = document.querySelector('.nav-container');
 
 addMenuItem('Home');
 addMenuItem('Projects');
@@ -18,9 +18,11 @@ function addMenuItem(id) {
   let pageTitle = document.title.toLowerCase();
   link.href = `${id.toLowerCase()}.html`;
   link.innerText = id;
-  div.className = 'menuchoice'
+  div.className = 'nav-item'
   div.id = id.toLowerCase();
-  if ((pageName.toLowerCase() == id.toLowerCase()) || (pageTitle == 'portfolio for jason larson' && (id.toLowerCase() == 'home')) || ((pageName.toLowerCase() == 'index') && (id.toLowerCase() == 'home'))) {
+  if ((pageName.toLowerCase() == id.toLowerCase())
+       || (pageTitle == 'portfolio for jason larson' && (id.toLowerCase() == 'home'))
+       || ((pageName.toLowerCase() == 'index') && (id.toLowerCase() == 'home'))) {
     div.className += ' active'
   }
   if (id == 'Home') link.href = 'index.html';
@@ -29,7 +31,7 @@ function addMenuItem(id) {
 }
 
 function addFooterInfo() {
-  let footer = document.querySelector(".flex-footer");
+  let footer = document.querySelector(".footer-container");
   footer.textContent = 'Contact me:';
   let link = createLink('https://www.linkedin.com/in/jason-larson-711284123')
   footer.appendChild(link)
@@ -46,7 +48,7 @@ function addFooterInfo() {
 }
 
 function addLink(href, imgsrc, imgalt) {
-  let footer = document.querySelector(".flex-footer");
+  let footer = document.querySelector(".footer-container");
   let link = createLink(href);
   footer.appendChild(link);
   createImg(imgsrc, imgalt, link);

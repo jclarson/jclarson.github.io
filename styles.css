@@ -1,0 +1,242 @@
+:root {
+  --head-height: 75px;
+}
+
+html {
+  box-sizing: border-box;
+}
+/*
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+*/
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.header-container, .section-container, .nav-container, .footer-container {
+  display: flex;
+}
+
+.header-container {
+  background-color: steelblue;
+  max-height: var(--head-height);
+}
+
+.header-item1 {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  color: white;
+}
+
+.header-text {
+  margin: auto;
+  font-size: calc(var(--head-height) / 3);
+  text-align: center;
+}
+
+.header-item2 {
+  display: none;
+}
+
+.section-container {
+  flex-direction: row;
+  height: 50vh;
+  flex: 1;
+}
+
+.nav-container {
+  width: 10%;
+  min-width: 150px;
+  flex-direction: column;
+  font-size: 1.25rem;
+  min-height: 100%;
+  height: 100%;
+  background-color:rgb(3, 20, 45);
+  margin: 0;
+}
+
+.nav-item {
+  text-align: left;
+  margin: 0;
+  line-height: 20px;
+  border-radius: 10px;
+  background-color: rgb(3, 20, 45);
+}
+
+.nav-item a {
+  padding: 15px 10px;
+  text-decoration: none;
+  color: ghostwhite;
+  display: block;
+}
+
+.nav-item a:hover {
+  background-color: lightskyblue;
+  color: rgb(3, 20, 45);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: unset;
+  border-radius: 10px;
+}
+
+.active {
+  background-color:rgb(57, 225, 255);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.active a {
+  color:rgb(3, 20, 45);
+}
+
+.active a:hover {
+  background-color:rgb(57, 225, 255);
+  color:rgb(3, 20, 45);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.home-main-container, .project-main-container, .repo-main-container {
+  overflow: auto;
+  padding: 0 15px;
+  background-color:rgb(177, 229, 238);
+  padding: 10px 15px;
+  width: 100%;
+}
+
+.project-main-container, .repo-main-container {
+  flex-direction: column;
+}
+
+.home-container {
+  display: inline-block;
+}
+
+.home-main-container a {
+  text-decoration: none;
+  color:darkmagenta;
+}
+
+.home-item2 {
+  float:right;
+}
+
+.footer-container {
+  min-height: 10vh;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  background-color: rgb(5, 21, 90);
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.smicon {
+  color:#0a66c2;
+  background-color: white;
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  margin: 0 10px;
+}
+
+.project {
+  display: flex;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color:rgb(3, 20, 45);
+  margin-bottom: 15px;
+  padding: 5px;
+}
+
+.projectname, .repolink {
+  /*display: inline-block;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 115px;
+  max-width: 115px;
+  padding: 10px;
+  border-style: solid;
+  font-weight: bold;
+  border-radius: 5px;
+  text-align: center;
+  height: 50px;
+  margin: 5px;
+  background-color:skyblue;
+}
+
+.project a, .repo a {
+  display: flex;
+  text-decoration: none;
+  color:rgb(3, 20, 45);
+  align-self: center;
+}
+
+.project a:hover, .repo a:hover {
+  font-size: 1.25rem;
+  font-weight: bolder;
+}
+
+.projectdesc {
+  width: 100%;
+  padding: 10px;
+  margin: auto 5px;
+  display: inline-block;
+}
+
+.reposection {
+  margin: 10px;
+}
+
+.assignments, .allrepos {
+  display: flex;
+  flex-direction: column;
+  border-bottom: rgb(3, 20, 45);
+  border-bottom-style: solid;
+  padding: 0 0 10px 0;
+}
+
+.allrepos {
+  padding: 15px 0 10px 0;
+}
+
+@media screen and (min-width: 280px) {
+  :root {
+    --head-height: 100px;
+  }
+
+  .header-item2 {
+    display: flex;
+    border-bottom:steelblue solid 1px;
+    border-top:steelblue solid 1px;
+    border-width: 1px;
+    border-color: steelblue;
+    max-height: var(--head-height);
+    max-width: var(--head-height);
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .header-item2 img {
+    object-fit: contain;
+    height: auto;
+    width: auto;
+  }
+  
+}
