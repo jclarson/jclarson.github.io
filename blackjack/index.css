@@ -1,0 +1,148 @@
+:root {
+  --card-width: 85px;
+  --card-slot: calc(var(--card-width) + 20px);
+}
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #016F32;
+  color: white;
+  text-align: center;
+  font-size: max(5vh, 18px);
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin: 0;
+}
+
+.game-title {
+  color: goldenrod;
+  height: 10vh;
+  min-height: 40px;
+  font-size: max(10vh, 40px);
+  padding-bottom: 1.5vh;
+}
+
+button {
+  justify-self: center;
+  align-self: center;
+  background-color: goldenrod;
+  color:#016F32;
+  width: 250px;
+  height: max(5.5vh, 40px);
+  font-size: min(8vh, 36px);
+  font-weight: 900;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  border-radius: 2px;
+  border-style: none;
+  margin: 3px;
+}
+
+#message-el {
+  font-style: italic;
+  height: min(5vh, 10vw);
+  margin: 1px 0;
+  padding-bottom: 1vh;
+}
+
+#limitations, #rules {
+  font-size: 12px;
+  font-weight: normal;
+  margin: .25em 0;
+  padding: 0;
+}
+
+#limitations p {
+  margin: 0;
+  text-align: center;
+}
+
+.card {
+  display: flex;
+  border:solid black 1px;
+  width: var(--card-width);
+  height: 125px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  color: green;
+  border-radius: 6px;
+  flex-direction: column;
+  padding: 2px;
+}
+
+.tiny-card-top, .tiny-card-bottom {
+  display: flex;
+  width: 40%;
+  align-items: center;
+  background-color: white;
+  color: green;
+  height: 15%;
+  font-size: 1rem;
+  padding: 0 2px;
+}
+
+.tiny-card-top {
+  order: -1;
+  align-self: flex-start;
+  justify-content: flex-start;
+}
+
+.tiny-card-bottom {
+  order: 2;
+  align-self: flex-end;
+  justify-content: flex-end;
+}
+
+.red, .lose {
+  color: red;
+}
+
+.black {
+  color: black;
+}
+
+.win {
+  color:lawngreen;
+}
+
+.push {
+  color:darkblue;
+}
+
+.face-down {
+  color: blue;
+  background-color: blue !important;
+}
+
+.card-holder {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 5px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+}
+.bet {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.chips-owned {
+  display: flex;
+  flex-direction: row;
+}
+.chips {
+  display: flex;
+  flex-direction: row;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}

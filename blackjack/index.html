@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <title>BlackJack</title>
+  <script src="index.js" defer></script>
+</head>
+<body>
+  <div id="limitations">
+    <p>This game has the following limitations:</p>
+    <p class="limitation">You cannot Double, Split, Surrender, or buy Insurance.</p>
+    <p class="limitation">You cannot bet.</p>
+
+  </div>
+  <div id="rules">Rules: Dealer hits on soft 17</div>
+  <div class="game-title">Blackjack</div>
+  <div id="message-el">Play a game?</div>
+  <div id="dcards-text">Dealer Cards:</div><div class="card-holder" id="dealer-el"></div>
+  <div id="pcards-text">Cards:</div><div class="card-holder" id="cards-el"></div>
+  <div id='sum-el'></div>
+  <div class="actions">
+    <div class="bet">
+      <div class="chips-owned">
+        <div class="chips hundreds">h</div>
+        <div class="chips quarters">q</div>
+        <div class="chips tens">d</div>
+        <div class="chips fives">f</div>
+        <div class="chips ones">o</div>
+      </div>
+      <div class="chips-bet">x</div>
+    </div>
+    <div class="buttons">
+      <button onclick="startGame()" id="start-btn">START GAME</button>
+      <button onclick="hit()" id="hit-btn">HIT ME</button>
+      <button onclick="stand()" id="stand-btn">STAND</button>
+    </div>
+  </div>
+  <p id="player-el">Player: </p>
+</body>
+</html>
