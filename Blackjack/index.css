@@ -19,7 +19,6 @@ body {
   height: 10vh;
   min-height: 40px;
   font-size: max(10vh, 40px);
-  border:black solid 1px;
   padding-bottom: 1.5vh;
 }
 
@@ -41,7 +40,6 @@ button {
 #message-el {
   font-style: italic;
   height: min(5vh, 10vw);
-  border:black solid 1px;
   margin: 1px 0;
   padding-bottom: 1vh;
 }
