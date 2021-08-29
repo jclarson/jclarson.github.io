@@ -9,22 +9,35 @@
   <script src="index.js" defer></script>
 </head>
 <body>
-  <div class="limitations">
+  <div id="limitations">
     <p>This game has the following limitations:</p>
-    <p>You cannot Double, Split, Surrender, or buy Insurance.</p>
-    <p>You cannot bet.</p>
+    <p class="limitation">You cannot Double, Split, Surrender, or buy Insurance.</p>
+    <p class="limitation">You cannot bet.</p>
+
   </div>
-  <div class="rules">
-    <p>Rules: Dealer hits on soft 17</p>
-  </div>
+  <div id="rules">Rules: Dealer hits on soft 17</div>
   <div class="game-title">Blackjack</div>
-  <div id="message-el">Want to play a round?</div>
+  <div id="message-el">Play a game?</div>
   <div id="dcards-text">Dealer Cards:</div><div class="card-holder" id="dealer-el"></div>
   <div id="pcards-text">Cards:</div><div class="card-holder" id="cards-el"></div>
   <div id='sum-el'></div>
-  <button onclick="startGame()" id="start-btn">START GAME</button>
-  <button onclick="hit()" id="hit-btn">HIT ME</button>
-  <button onclick="stand()" id="stand-btn">STAND</button>
+  <div class="actions">
+    <div class="bet">
+      <div class="chips-owned">
+        <div class="chips hundreds">h</div>
+        <div class="chips quarters">q</div>
+        <div class="chips tens">d</div>
+        <div class="chips fives">f</div>
+        <div class="chips ones">o</div>
+      </div>
+      <div class="chips-bet">x</div>
+    </div>
+    <div class="buttons">
+      <button onclick="startGame()" id="start-btn">START GAME</button>
+      <button onclick="hit()" id="hit-btn">HIT ME</button>
+      <button onclick="stand()" id="stand-btn">STAND</button>
+    </div>
+  </div>
   <p id="player-el">Player: </p>
 </body>
 </html>

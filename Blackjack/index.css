@@ -44,11 +44,16 @@ button {
   padding-bottom: 1vh;
 }
 
-.limitations, .rules, .limitations p {
+#limitations, #rules {
   font-size: 12px;
   font-weight: normal;
-  margin: 0;
+  margin: .25em 0;
   padding: 0;
+}
+
+#limitations p {
+  margin: 0;
+  text-align: center;
 }
 
 .card {
@@ -87,12 +92,21 @@ button {
   align-self: flex-end;
   justify-content: flex-end;
 }
-.red {
+
+.red, .lose {
   color: red;
 }
 
 .black {
   color: black;
+}
+
+.win {
+  color:lawngreen;
+}
+
+.push {
+  color:darkblue;
 }
 
 .face-down {
@@ -108,6 +122,27 @@ button {
   justify-content: space-between;
   flex-direction: row;
   padding: 5px;
-  border: solid black 1px;
-  /*width: calc(100px + var(--card-slot));*/
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+}
+.bet {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.chips-owned {
+  display: flex;
+  flex-direction: row;
+}
+.chips {
+  display: flex;
+  flex-direction: row;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
 }
