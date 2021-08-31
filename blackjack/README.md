@@ -20,7 +20,7 @@ No support is provided for this application.  Use at your own discretion.
 
 # Roadmap:
 
-Currently planned additions: the ability to bet on each hand, as well as the ability to Double, Split, Surrender, and Buy Insurance.
+Currently planned additions: The ability to Double, Split, Surrender, Buy Insurance, and play with more than 1 deck.
 Possible future enhancements: Multi-player and network play.
 
 # License information:

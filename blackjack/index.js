@@ -1,5 +1,5 @@
 /* #region variables*/
-const LOGGING = false;
+const LOGGING = true;
 const SUITS = ["♠", "♣", "♥", "♦"];
 const CARDWIDTH = 85;
 const CARDSLOT = CARDWIDTH + 10;
@@ -18,7 +18,7 @@ let dealerText = document.getElementById('dcards-text');
 let playerText = document.getElementById('pcards-text');
 let chipsBet = document.querySelector('.chips-bet');
 let chipsBetContainer = document.querySelector('.chips-bet-container');
-let sameBetButton = document.getElementById('same-bet-btn');
+let prevBetButton = document.getElementById('prev-bet-btn');
 let clearBetButton = document.getElementById('clear-bet-btn');
 let placeBetButton = document.getElementById('place-bet-btn');
 let betButtonsText = document.getElementById('bet-buttons-text');
@@ -55,7 +55,10 @@ if (player.name == 'Player1') playerEl.style.display = "none";
 function applyBet(amt) {
   log(`applyBet(${amt})`);
   player.bet = amt;
-  if (player.bet <= 0) return;
+  if (player.bet <= 0) {
+    configureButtons();
+    return;
+  }
   player.betPlaced = true;
   log(`player betplaced is ${player.betPlaced}: ${player.bet}`);
   player.previousBet = player.bet;
@@ -69,10 +72,12 @@ function bet(amount) {
   log(`bet(${amount})`);
   player.bet += amount;
   player.chips -= amount;
+  player.chipsPlaced = true;
   chipsBet.textContent = player.bet;
   chipsOwned.textContent = player.chips;
   if (player.bet > 0) {
     undisplayElement(betButtonsText);
+    hideElement(prevBetButton);
     showElement(clearBetButton);
     showElement(placeBetButton);
   } else {
@@ -175,8 +180,16 @@ function checkPlayerHand() {
 }
 
 function clearBet() {
-  let amt = -parseInt(chipsBet.textContent);
-  bet(amt);
+  let amt = parseInt(chipsBet.textContent);
+  if (player.chipsPlaced) {
+    player.chips += amt;
+    player.bet -= amt;
+  }
+  chipsBet.textContent = player.bet;
+  chipsOwned.textContent = player.chips;
+  player.chipsPlaced = false;
+  hideElement(placeBetButton);
+  applyBet(0);
 }
 
 function clearCardDisplay(element) {
@@ -192,20 +205,20 @@ function configureButtons() {
   if (player.betPlaced) {
     undisplayElement(betButtonsDiv);
     displayElement(cardButtonsDiv);
-    undisplayElement(startButton)
+    undisplayElement(startButton);
   } else {
     undisplayElement(cardButtonsDiv);
     displayElement(betButtonsDiv);
-    //undisplayElement(betButtonsText);
     if (parseInt(chipsBet.textContent) <= 0) {
-      hideElement(sameBetButton);
+      hideElement(prevBetButton)
       hideElement(clearBetButton);
       hideElement(placeBetButton);
-      betButtonsText.textContent = 'You must add chips in order to play.'
+      if (player.previousBet > 0) showElement(prevBetButton);
+      betButtonsText.textContent = 'Add chips to play.'
       displayElement(betButtonsText);
     } else {
       undisplayElement(betButtonsText);
-      if (player.previousBet > 0) showElement(sameBetButton);
+      if (player.previousBet > 0 && !player.chipsPlaced) showElement(prevBetButton);
       showElement(clearBetButton);
       showElement(placeBetButton);
     }
@@ -359,6 +372,7 @@ function initializeGame() {
     dealer.isDealer = true;
     player.isDealer = false;
     player.previousBet = 0;
+    player.chipsPlaced = false;
     undisplayElement(betContainer);
     undisplayElement(betButtonsDiv);
     displayElement(cardButtonsDiv);
@@ -368,8 +382,6 @@ function initializeGame() {
     undisplayElement(cardButtonsDiv);
     displayElement(betButtonsDiv);
     displayElement(betContainer);
-    //displayElement(document.querySelector('.chips-owned'));
-    //displayElement(document.querySelectorAll('.chips'));
     messageEl.textContent = 'Place bet to begin'
     actionsDiv.style.justifyContent = 'space-around';
   }
@@ -377,6 +389,7 @@ function initializeGame() {
   player.isAlive = false;
   player.bet = 0;
   player.betPlaced = false;
+  player.chipsPlaced = false;
   chipsOwned.textContent = player.chips
   cardsEl.style.width = dealerEl.style.width = (CARDSLOT * 2) + 'px';
   deck = initializeDeck();
@@ -408,8 +421,12 @@ function log(msg) {
 }
 
 function placeBet() {
-  log('placeBet()');
+  log(`placeBet() using playerbet of ${player.bet} and chipsbet of ${chipsBet.textContent}`);
   player.bet = parseInt(chipsBet.textContent);
+  if (!player.chipsPlaced) {
+    player.chips -= parseInt(chipsBet.textContent);
+    chipsOwned.textContent = player.chips;
+  }
   if (player.bet <= 0) return;
   applyBet(player.bet);
 }
@@ -431,15 +448,14 @@ function result(result, msg) {
   else if (result == 'push') player.chips += player.bet;
   else if (result == 'bj') player.chips += (player.bet * 2.5);
   chipsOwned.textContent = player.chips;
-  sameBetButton.textContent = `SAME (${player.previousBet})`;
-  chipsBet.textContent = 0;
+  prevBetButton.textContent = `PREV (${player.previousBet})`;
+  //chipsBet.textContent = 0;
   hideCardButtons();
 }
 
-function sameBet() {
-  log(`sameBet() - Previous bet is ${player.previousBet}`);
+function prevBet() {
+  log(`prevBet() - Previous bet is ${player.previousBet}`);
   if (player.previousBet === 0) return;
-  player.chips += parseInt(chipsBet.textContent);
   player.bet = player.previousBet;
   player.chips -= player.previousBet;
   chipsOwned.textContent = player.chips;

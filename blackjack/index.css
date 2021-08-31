@@ -23,18 +23,24 @@ body {
 }
 
 button {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 3;
   justify-self: center;
   align-self: center;
   background-color: goldenrod;
   color:#016F32;
-  width: 250px;
-  height: max(5.5vh, 40px);
-  font-size: min(8vh, 36px);
-  font-weight: 900;
+  width: 150px;
+  height: max(4vh, 40px);
+  font-size: min(3vh, 24px);
+  font-weight: 700;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   border-radius: 2px;
   border-style: none;
   margin: 3px;
+  padding: 0;
 }
 
 #message-el {
@@ -212,4 +218,13 @@ button {
   .owned-bet {
     flex-direction: row;
   }
+
+  button {
+    width: 250px;
+    height: max(5.5vh, 40px);
+    font-size: min(8vh, 36px);
+    font-weight: 900;
+    margin: 3px;
+  }
+  
 }
