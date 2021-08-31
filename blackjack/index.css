@@ -101,7 +101,7 @@ button {
   color: black;
 }
 
-.win {
+.win, .bj {
   color:lawngreen;
 }
 
@@ -128,21 +128,88 @@ button {
   display: flex;
   flex-direction: row;
 }
-.bet {
+.bet-container {
   display: flex;
   flex-direction: column;
   width: 50%;
 }
-.chips-owned {
+.chips-to-bet {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .chips {
   display: flex;
   flex-direction: row;
+  border:burlywood solid 1px;
+  width: 120px;
+  justify-content: center;
+  cursor: pointer;
 }
 
+.ones {
+  display: none;
+  background-color: white;
+}
+
+.hundreds {
+  background-color: black;
+}
+
+.fives {
+  background-color: red;
+}
+
+.tens {
+  background-color:darkblue
+}
+
+.quarters {
+  background-color: limegreen;
+}
+
+.card-buttons, .bet-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.undisplayed {
+  display: none;
+}
 .buttons {
   display: flex;
   flex-direction: column;
+  width: 50%;
+}
+
+#bet-buttons-text {
+  margin: 0 2px 2px 2px;
+}
+
+.owned-bet {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0 20px 0 0;
+  padding: 2px 10px 0 5px;
+  font-size: 24px;
+}
+
+.chips-owned, .chips-bet {
+  justify-content: center;
+  width: 75px;
+}
+
+.chips-bet-text, .owned-text {
+  margin-top: 5px;
+  width: 100px;
+}
+
+@media screen and (min-width: 500px) {
+  .chips-to-bet {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .owned-bet {
+    flex-direction: row;
+  }
 }

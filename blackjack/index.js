@@ -16,9 +16,30 @@ let hitButton = document.getElementById('hit-btn');
 let standButton = document.getElementById('stand-btn');
 let dealerText = document.getElementById('dcards-text');
 let playerText = document.getElementById('pcards-text');
+let chipsBet = document.querySelector('.chips-bet');
+let chipsBetContainer = document.querySelector('.chips-bet-container');
+let sameBetButton = document.getElementById('same-bet-btn');
+let clearBetButton = document.getElementById('clear-bet-btn');
+let placeBetButton = document.getElementById('place-bet-btn');
+let betButtonsText = document.getElementById('bet-buttons-text');
+let cardButtonsDiv = document.querySelector('.card-buttons');
+let betButtonsDiv = document.querySelector('.bet-buttons');
+let betContainer = document.querySelector('.bet-container');
+let actionsDiv = document.querySelector('.actions');
+let ownedContainer = document.querySelector('.owned-container');
+let ownedText = document.querySelector('.owned-text');
+let chipsBetText = document.querySelector('.chips-bet-text');
+let chipsToBet = document.querySelector('.chips-to-bet');
+let chipsOwned = document.querySelector('.chips-owned');
+let ownedBet = document.querySelector('.owned-bet');
+let buttonsConfigured = false;
+let to;
+let cb;
 let deck = [];
 let shuffledDeck = [];
-let game = {};
+let game = {
+  hasStarted: false
+};
 let dealer = {}
 
 let player = {
@@ -30,6 +51,57 @@ let player = {
 initializeGame();
 
 if (player.name == 'Player1') playerEl.style.display = "none";
+
+function applyBet(amt) {
+  log(`applyBet(${amt})`);
+  player.bet = amt;
+  if (player.bet <= 0) return;
+  player.betPlaced = true;
+  log(`player betplaced is ${player.betPlaced}: ${player.bet}`);
+  player.previousBet = player.bet;
+  undisplayElement(chipsToBet);
+  configureButtons();
+  buttonsConfigured = false;
+  renderGame();
+}
+
+function bet(amount) {
+  log(`bet(${amount})`);
+  player.bet += amount;
+  player.chips -= amount;
+  chipsBet.textContent = player.bet;
+  chipsOwned.textContent = player.chips;
+  if (player.bet > 0) {
+    undisplayElement(betButtonsText);
+    showElement(clearBetButton);
+    showElement(placeBetButton);
+  } else {
+    displayElement(betButtonsText);
+    hideElement(clearBetButton);
+    hideElement(placeBetButton);
+  }
+  configureButtons();
+}
+
+function bet1() {
+  bet(1);
+}
+
+function bet5() {
+  bet(5);
+}
+
+function bet10() {
+  bet(10);
+}
+
+function bet25() {
+  bet(25);
+}
+
+function bet100() {
+  bet(100);
+}
 
 function checkDealerHand() {
   log('inside checkDealerHand');
@@ -62,13 +134,13 @@ function checkDealerHand() {
 }
 
 function checkForBlackJack() {
-  log('inside checkForBlackJack');
+  log('checkForBlackJack()');
   if (!dealer.hasBlackjack && !player.hasBlackjack) return false;
   if (dealer.hasBlackjack) {
     if (!player.hasBlackjack) result('lose', "Lose: (D:BJ)");
     else result('push', "Push: (BJ)");
   } else if (player.hasBlackjack) {
-      result('win', "Win! Blackjack!")
+      result('bj', "Win! Blackjack!")
       sumEl.textContent = `Sum: ${player.totalWithAce}`
   }
 
@@ -102,10 +174,42 @@ function checkPlayerHand() {
   displayCards(player, cardsEl);
 }
 
+function clearBet() {
+  let amt = -parseInt(chipsBet.textContent);
+  bet(amt);
+}
+
 function clearCardDisplay(element) {
+  log(`clearCardDisplay(${element})`);
   numNodes = element.childNodes.length;
   for (let i = 1; i <= numNodes; i++) {
     element.removeChild(element.childNodes[0]);
+  }
+}
+
+function configureButtons() {
+  log('configureButtons()');
+  if (player.betPlaced) {
+    undisplayElement(betButtonsDiv);
+    displayElement(cardButtonsDiv);
+    undisplayElement(startButton)
+  } else {
+    undisplayElement(cardButtonsDiv);
+    displayElement(betButtonsDiv);
+    //undisplayElement(betButtonsText);
+    if (parseInt(chipsBet.textContent) <= 0) {
+      hideElement(sameBetButton);
+      hideElement(clearBetButton);
+      hideElement(placeBetButton);
+      betButtonsText.textContent = 'You must add chips in order to play.'
+      displayElement(betButtonsText);
+    } else {
+      undisplayElement(betButtonsText);
+      if (player.previousBet > 0) showElement(sameBetButton);
+      showElement(clearBetButton);
+      showElement(placeBetButton);
+    }
+    buttonsConfigured = false;
   }
 }
 
@@ -140,7 +244,16 @@ function dealerHit() {
   dealCard(dealer);
 }
 
+function dealStartingCards() {
+  log('dealStartingCards()');
+  dealCard(player);
+  dealCard(dealer); //'rigged', 0 is AofS -- 12 is KofS
+  dealCard(player);
+  dealCard(dealer);
+}
+
 function displayCards(person, cardHolder) {
+  log(`displayCards(${person}, ${cardHolder})`);
   showElement(dealerText);
   showElement(dealerEl);
   showElement(playerText);
@@ -168,8 +281,12 @@ function displayCards(person, cardHolder) {
   }
 }
 
+function displayElement(element) {
+  element.style.display = 'flex';
+}
+
 function hideCardButtons() {
-  showElement(startButton);
+  displayElement(startButton);
   hideElement(hitButton);
   hideElement(standButton);
 }
@@ -179,6 +296,7 @@ function hideElement(element) {
 }
 
 function hit() {
+  log('hit()');
   if (player.hasBlackjack || player.has21 || player.isStanding || !player.isAlive) return;
   log(`player hits with ${player.total}/${player.totalWithAce}`);
   dealCard(player);
@@ -188,6 +306,7 @@ function hit() {
 }
 
 function initializeDeck() {
+  log('initializeDeck()');
   let deck = [];
   for (let s = 0; s < 4; s++) {
     for (let i = 1; i <= 13; i++) {
@@ -231,32 +350,50 @@ function initializeDeck() {
 }
 
 function initializeGame() {
+  log('initializeGame()');
   initializePerson(dealer);
   initializePerson(player);
-  dealer.name = 'Dealer';
-  dealer.isDealer = true;
-  player.isDealer = false;
+  if (!game.hasStarted) {
+    player.chips = 1000;
+    dealer.name = 'Dealer';
+    dealer.isDealer = true;
+    player.isDealer = false;
+    player.previousBet = 0;
+    undisplayElement(betContainer);
+    undisplayElement(betButtonsDiv);
+    displayElement(cardButtonsDiv);
+    hideCardButtons();
+    actionsDiv.style.justifyContent = 'center';
+  } else {
+    undisplayElement(cardButtonsDiv);
+    displayElement(betButtonsDiv);
+    displayElement(betContainer);
+    //displayElement(document.querySelector('.chips-owned'));
+    //displayElement(document.querySelectorAll('.chips'));
+    messageEl.textContent = 'Place bet to begin'
+    actionsDiv.style.justifyContent = 'space-around';
+  }
   player.isStanding = false;
   player.isAlive = false;
   player.bet = 0;
+  player.betPlaced = false;
+  chipsOwned.textContent = player.chips
   cardsEl.style.width = dealerEl.style.width = (CARDSLOT * 2) + 'px';
   deck = initializeDeck();
   clearCardDisplay(cardsEl);
   clearCardDisplay(dealerEl);
-  hideCardButtons();
   hideElement(cardsEl);
   hideElement(dealerEl);
   hideElement(dealerText);
   hideElement(playerText);
   hideElement(sumEl);
-  messageEl.classList.remove('win','lose','push');
+  messageEl.classList.remove('win','lose','push', 'bj');
   sumEl.textContent = `Sum: ${player.total}`;
-  if (document.querySelector('.bet')) document.querySelector('.bet').remove();
-  document.querySelector('.actions').style.justifyContent = 'center';
   game.isInitialized = true;
 }
 
 function initializePerson(person) {
+  log(`initializePerson(${person.name})`);
   person.hand = [];
   person.has21 = false;
   person.hasAce = false;
@@ -270,7 +407,16 @@ function log(msg) {
   if (LOGGING) console.log(msg);
 }
 
+function placeBet() {
+  log('placeBet()');
+  player.bet = parseInt(chipsBet.textContent);
+  if (player.bet <= 0) return;
+  applyBet(player.bet);
+}
+
 function renderGame() {
+  log('renderGame()');
+  dealStartingCards();
   displayCards(dealer, dealerEl);
   if (checkForBlackJack()) return;
   log('no blackjacks, checking player hand');
@@ -281,7 +427,24 @@ function result(result, msg) {
   messageEl.classList.add(result);
   messageEl.textContent = msg;
   player.isAlive = false;
+  if (result == 'win') player.chips += (player.bet * 2);
+  else if (result == 'push') player.chips += player.bet;
+  else if (result == 'bj') player.chips += (player.bet * 2.5);
+  chipsOwned.textContent = player.chips;
+  sameBetButton.textContent = `SAME (${player.previousBet})`;
+  chipsBet.textContent = 0;
   hideCardButtons();
+}
+
+function sameBet() {
+  log(`sameBet() - Previous bet is ${player.previousBet}`);
+  if (player.previousBet === 0) return;
+  player.chips += parseInt(chipsBet.textContent);
+  player.bet = player.previousBet;
+  player.chips -= player.previousBet;
+  chipsOwned.textContent = player.chips;
+  chipsBet.textContent = player.bet;
+  applyBet(player.bet)
 }
 
 function showElement(element) {
@@ -299,6 +462,7 @@ function shuffleDeck() {
 }
 
 function stand() {
+  log('stand()');
   if (player.hasBlackjack || player.has21 || player.isStanding || !player.isAlive) return;
   player.isStanding = true;
   if (player.hasAce) {
@@ -312,18 +476,31 @@ function stand() {
 }
 
 function startGame() {
+  log('startGame()');
+  game.hasStarted = true;
   if (document.getElementById('limitations')) document.getElementById('limitations').remove();
   if (!game.isInitialized) {
     initializeGame();
   }
   message = '';
+  log(`chips bet is currently ${chipsBet.textContent}`);
   game.isInitialized = false;
   player.isAlive = true;
-  hideElement(startButton);
   shuffledDeck = shuffleDeck();
-  dealCard(player);
-  dealCard(dealer); //'rigged', 0 is AofS -- 12 is KofS
-  dealCard(player);
-  dealCard(dealer);
-  renderGame();
+  displayElement(betContainer);
+  displayElement(chipsToBet);
+  undisplayElement(cardButtonsDiv);
+  displayElement(betButtonsDiv);
+  if (!buttonsConfigured) {
+    configureButtons();
+    console.log('waiting on bet to be placed.');
+  }
+  if (!player.betPlaced) return;
+  console.log('buttons configured and bet placed');
+  
+  return
+}
+
+function undisplayElement(element) {
+  element.style.display = 'none';
 }

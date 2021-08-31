@@ -12,7 +12,6 @@
   <div id="limitations">
     <p>This game has the following limitations:</p>
     <p class="limitation">You cannot Double, Split, Surrender, or buy Insurance.</p>
-    <p class="limitation">You cannot bet.</p>
 
   </div>
   <div id="rules">Rules: Dealer hits on soft 17</div>
@@ -22,20 +21,35 @@
   <div id="pcards-text">Cards:</div><div class="card-holder" id="cards-el"></div>
   <div id='sum-el'></div>
   <div class="actions">
-    <div class="bet">
-      <div class="chips-owned">
-        <div class="chips hundreds">h</div>
-        <div class="chips quarters">q</div>
-        <div class="chips tens">d</div>
-        <div class="chips fives">f</div>
-        <div class="chips ones">o</div>
+    <div class="bet-container">
+      <div class="chips-to-bet">
+        <div class="chips hundreds" onclick="bet100()">$100</div>
+        <div class="chips quarters" onclick="bet25()">$25</div>
+        <div class="chips tens" onclick="bet10()">$10</div>
+        <div class="chips fives" onclick="bet5()">$5</div>
+        <div class="chips ones" onclick="bet1()">$1</div>
       </div>
-      <div class="chips-bet">x</div>
+      <div class="owned-bet">
+        <div class="owned-container">
+          <div class="owned-text">Owned:</div><div class="chips-owned">0</div>
+        </div>
+        <div class="chips-bet-container">
+          <div class="chips-bet-text">Bet:</div><div class="chips-bet">0</div>
+        </div>
+      </div>
     </div>
     <div class="buttons">
-      <button onclick="startGame()" id="start-btn">START GAME</button>
-      <button onclick="hit()" id="hit-btn">HIT ME</button>
-      <button onclick="stand()" id="stand-btn">STAND</button>
+      <div class="card-buttons">
+        <button onclick="startGame()" id="start-btn">START GAME</button>
+        <button onclick="hit()" id="hit-btn">HIT ME</button>
+        <button onclick="stand()" id="stand-btn">STAND</button>
+      </div>
+      <div class="bet-buttons">
+        <p id="bet-buttons-text">Place a bet to begin.</p>
+        <button onclick="sameBet()" id="same-bet-btn">SAME BET</button>
+        <button onclick="clearBet()" id="clear-bet-btn">CLEAR BET</button>
+        <button onclick="placeBet()" id="place-bet-btn">PLACE BET</button>
+      </div>
     </div>
   </div>
   <p id="player-el">Player: </p>
