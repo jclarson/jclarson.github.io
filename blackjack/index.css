@@ -1,6 +1,9 @@
 :root {
   --card-width: 85px;
   --card-slot: calc(var(--card-width) + 20px);
+  --bwidth: 16px;
+  --outerRot: -90deg;
+  --innerRot: 90deg;
 }
 body {
   display: flex;
@@ -134,43 +137,75 @@ button {
   display: flex;
   flex-direction: row;
 }
+
 .bet-container {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 60%;
 }
 .chips-to-bet {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0 10px;
+  height: 35vh;
+  justify-content: flex-start;
 }
-.chips {
+.chip {
   display: flex;
-  flex-direction: row;
-  border:burlywood solid 1px;
-  width: 120px;
-  justify-content: center;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  height: 25px;
+  width: 25px;
+  border: var(--bwidth) solid ivory;
+  border-top: var(--bwidth) solid white;
+  border-bottom: var(--bwidth) solid white;
+  border-radius: 50%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  background-color:rgba(255, 255, 255, 0.753);
+  color: black;
+  transform: rotate(var(--outerRot));
 }
 
-.ones {
+.inner-chip {
+  border: calc(var(--bwidth) * .5) solid ivory;
+  border-top: calc(var(--bwidth) * .5) solid black;
+  border-bottom: calc(var(--bwidth) * .5) solid black;
+  margin: -50%;
+  transform: rotate(var(--innerRot));
+}
+
+.ones, .chip1 {
   display: none;
-  background-color: white;
+  border-top-color: bisque;
+  border-bottom-color: bisque;
+
 }
 
-.hundreds {
-  background-color: black;
+.hundreds, .chip100 {
+  border-top-color: black;
+  border-bottom-color: black;
 }
 
-.fives {
-  background-color: red;
+.fives, .chip5 {
+  border-top-color: red;
+  border-bottom-color: red;
 }
 
-.tens {
-  background-color:darkblue
+.tens, .chip10 {
+  border-top-color: darkblue;
+  border-bottom-color: darkblue;
 }
 
-.quarters {
-  background-color: limegreen;
+.quarters, .chip25 {
+  border-top-color: limegreen;
+  border-bottom-color: limegreen;
+
 }
 
 .card-buttons, .bet-buttons {
@@ -209,14 +244,34 @@ button {
   margin-top: 5px;
   width: 100px;
 }
-
+@media screen and (min-height: 525px) {
+  .chips-to-bet {
+    height: 30vh;
+  }
+}
+@media screen and (min-height: 625px) {
+  .chips-to-bet {
+    height: 25vh;
+  }
+}
+@media screen and (min-width: 550px) {
+  .chips-to-bet {
+    padding: 0 50px;
+  }
+}
 @media screen and (min-width: 500px) {
+  body {
+    max-width: 1000px;
+  }
   .chips-to-bet {
     flex-direction: row;
     flex-wrap: wrap;
+    padding: 0 10px;
   }
+
   .owned-bet {
     flex-direction: row;
+    margin-top: 10px;
   }
 
   button {
@@ -226,5 +281,11 @@ button {
     font-weight: 900;
     margin: 3px;
   }
-  
+
+  .chip {
+    height: 50px;
+    width: 50px;
+    font-size: 22px;
+  }
+
 }
