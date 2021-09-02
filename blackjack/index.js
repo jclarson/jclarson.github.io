@@ -55,6 +55,7 @@ if (player.name == 'Player1') playerEl.style.display = "none";
 function applyBet(amt) {
   log(`applyBet(${amt})`);
   player.bet = amt;
+  betButtonsText.classList.remove('error');
   if (player.bet <= 0) {
     configureButtons();
     return;
@@ -70,6 +71,14 @@ function applyBet(amt) {
 
 function bet(amount) {
   log(`bet(${amount})`);
+  if ((player.chips - amount) < 0) {
+    betButtonsText.textContent = 'Bet is too high';
+    betButtonsText.classList.add('error');
+    displayElement(betButtonsText);
+    hideElement(prevBetButton);
+    showElement(clearBetButton);
+    return;
+  }
   player.bet += amount;
   player.chips -= amount;
   player.chipsPlaced = true;
@@ -203,24 +212,33 @@ function clearCardDisplay(element) {
 function configureButtons() {
   log('configureButtons()');
   if (player.betPlaced) {
+    log('bet has been placed');
     undisplayElement(betButtonsDiv);
     displayElement(cardButtonsDiv);
     undisplayElement(startButton);
   } else {
+    log('no bet placed');
     undisplayElement(cardButtonsDiv);
     displayElement(betButtonsDiv);
     if (parseInt(chipsBet.textContent) <= 0) {
-      hideElement(prevBetButton)
+      log(`chipsbet content is lte 0`);
+      hideElement(prevBetButton);
       hideElement(clearBetButton);
       hideElement(placeBetButton);
-      if (player.previousBet > 0) showElement(prevBetButton);
+      if (player.previousBet > 0 && ((player.chips - player.previousBet) >= 0)) showElement(prevBetButton);
       betButtonsText.textContent = 'Add chips to play.'
       displayElement(betButtonsText);
     } else {
-      undisplayElement(betButtonsText);
-      if (player.previousBet > 0 && !player.chipsPlaced) showElement(prevBetButton);
-      showElement(clearBetButton);
+      log(`chipsbet content is ${chipsBet.textContent}`);
+      hideElement(prevBetButton);
       showElement(placeBetButton);
+      undisplayElement(betButtonsText);
+      if (player.previousBet > 0
+          && !player.chipsPlaced
+          && ((player.chips - player.previousBet) >= 0)) showElement(prevBetButton);
+      if (!player.chipsPlaced
+          && (player.chips - parseInt(chipsBet.textContent) < 0)) hideElement(placeBetButton);
+      showElement(clearBetButton);
     }
     buttonsConfigured = false;
   }
@@ -266,7 +284,7 @@ function dealStartingCards() {
 }
 
 function displayCards(person, cardHolder) {
-  log(`displayCards(${person}, ${cardHolder})`);
+  log(`displayCards(${{person}}, ${cardHolder})`);
   showElement(dealerText);
   showElement(dealerEl);
   showElement(playerText);
@@ -507,6 +525,17 @@ function startGame() {
   displayElement(chipsToBet);
   undisplayElement(cardButtonsDiv);
   displayElement(betButtonsDiv);
+  if (player.chips <= 0) {
+    log('player is broke.')
+    hideElement(prevBetButton);
+    hideElement(clearBetButton);
+    hideElement(placeBetButton);
+    betButtonsText.classList.add('error');
+    betButtonsText.textContent = 'You have 0 chips';
+    displayElement(betButtonsText);
+    undisplayElement(betContainer);
+    return;
+  }
   if (!buttonsConfigured) {
     configureButtons();
     console.log('waiting on bet to be placed.');

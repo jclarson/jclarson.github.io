@@ -102,7 +102,7 @@ button {
   justify-content: flex-end;
 }
 
-.red, .lose {
+.red, .lose, .error {
   color: red;
 }
 
