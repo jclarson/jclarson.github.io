@@ -11,7 +11,7 @@
 <body>
   <div id="limitations">
     <p>This game has the following limitations:</p>
-    <p class="limitation">You cannot Double, Split, Surrender, or buy Insurance.</p>
+    <p class="limitation">You cannot Split, Surrender, or buy Insurance.</p>
 
   </div>
   <div id="rules">Rules: Dealer hits on soft 17</div>
@@ -23,11 +23,11 @@
   <div class="actions">
     <div class="bet-container">
       <div class="chips-to-bet">
-        <div class="chip hundreds" onclick="bet100()"><div class="chip inner-chip chip100">100</div></div>
-        <div class="chip quarters" onclick="bet25()"><div class="chip inner-chip chip25">25</div></div>
-        <div class="chip tens" onclick="bet10()"><div class="chip inner-chip chip10">10</div></div>
-        <div class="chip fives" onclick="bet5()"><div class="chip inner-chip chip5">5</div></div>
-        <div class="chip ones" onclick="bet1()"><div class="chip inner-chip chip1">1</div></div>
+        <div class="chip hundreds" onclick="bet(100)"><div class="chip inner-chip chip100">100</div></div>
+        <div class="chip quarters" onclick="bet(25)"><div class="chip inner-chip chip25">25</div></div>
+        <div class="chip tens" onclick="bet(10)"><div class="chip inner-chip chip10">10</div></div>
+        <div class="chip fives" onclick="bet(5)"><div class="chip inner-chip chip5">5</div></div>
+        <div class="chip ones" onclick="bet(1)"><div class="chip inner-chip chip1">1</div></div>
       </div>
       <div class="owned-bet">
         <div class="owned-container">
@@ -43,6 +43,10 @@
         <button onclick="startGame()" id="start-btn">START GAME</button>
         <button onclick="hit()" id="hit-btn">HIT ME</button>
         <button onclick="stand()" id="stand-btn">STAND</button>
+        <button onclick="double()" id="double-btn">DOUBLE</button>
+        <button onclick="split()" id="split-btn">SPLIT</button>
+        <button onclick="surrender()" id="surrender-btn">SURRENDER</button>
+        <button onclick="insurance()" id="insurance-btn">INSURANCE</button>
       </div>
       <div class="bet-buttons">
         <p id="bet-buttons-text">Place a bet to begin.</p>
