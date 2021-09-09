@@ -425,6 +425,8 @@ function initializeGame() {
     hideCardButtons();
     actionsDiv.style.justifyContent = 'center';
   } else {
+    displayElement(doubleButton);
+    showElement(doubleButton);
     undisplayElement(cardButtonsDiv);
     displayElement(betButtonsDiv);
     displayElement(betContainer);
@@ -496,7 +498,7 @@ function renderGame() {
   dealStartingCards();
   displayCards(dealer, dealerEl);
   if (checkForBlackJack()) return;
-  if (player.bet <= player.chips) showElement(doubleButton);
+  if (player.bet > player.chips) undisplayElement(doubleButton);
   showElement(surrenderButton);
   log('no blackjacks, checking player hand');
   document.querySelector('.table-container').classList.add('move-table-left');
@@ -509,13 +511,11 @@ function result(result, msg) {
   messageEl.classList.add(result);
   messageEl.textContent = msg;
   player.isAlive = false;
-  if (result == 'win') {
-    player.chips += (player.bet * 2);
-    document.body.classList.add('win-game');
-  }
+  if(result == 'win' || result == 'bj')  document.body.classList.add('win-game');
+  if (result == 'win') player.chips += (player.bet * 2);
   else if (result == 'push') player.chips += player.bet;
   else if (result == 'bj') player.chips += (player.bet * 2.5);
-  document.body.classList.add('lose-game');
+  else document.body.classList.add('lose-game');
   chipsOwned.textContent = player.chips;
   prevBetButton.textContent = `PREV (${player.previousBet})`;
   //chipsBet.textContent = 0;

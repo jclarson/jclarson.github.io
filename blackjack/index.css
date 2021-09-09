@@ -15,6 +15,7 @@ body {
   font-weight: bold;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   margin: 0;
+  max-width: 750px;
 }
 
 .game-title {
@@ -282,9 +283,6 @@ button {
   }
 }
 @media screen and (min-width: 500px) {
-  body {
-    max-width: 1000px;
-  }
   .chips-to-bet {
     flex-direction: row;
     flex-wrap: wrap;
