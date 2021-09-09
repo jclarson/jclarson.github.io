@@ -499,6 +499,7 @@ function renderGame() {
   displayCards(dealer, dealerEl);
   if (checkForBlackJack()) return;
   if (player.bet > player.chips) undisplayElement(doubleButton);
+  else showElement(doubleButton);
   showElement(surrenderButton);
   log('no blackjacks, checking player hand');
   document.querySelector('.table-container').classList.add('move-table-left');
