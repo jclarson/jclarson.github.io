@@ -137,11 +137,13 @@ function checkForBlackJack() {
   if (dealer.hasBlackjack) {
     if (!player.hasBlackjack) result('lose', "Lose: (D:BJ)");
     else result('push', "Push: (BJ)");
+    sumEl.textContent = `Sum: ${player.total}`
   } else if (player.hasBlackjack) {
       result('bj', "Win! Blackjack!")
       sumEl.textContent = `Sum: ${player.totalWithAce}`
   }
 
+  //showElement(sumEl);
   displayCards(player, cardsEl);
   checkDealerHand();
   return true;
@@ -228,6 +230,11 @@ function configureButtons() {
   }
 }
 
+function correctTableLayout() {
+  document.querySelector('.table-container').classList.remove('move-table-left');
+  cardButtonsDiv.classList.remove('move-buttons-up');
+}
+
 function dealCard(person, dealType='normal', i) {
   let card;
   if (dealType == 'normal') card = shuffledDeck.pop();
@@ -274,7 +281,8 @@ function displayCards(person, cardHolder) {
   showElement(playerText);
   showElement(playerEl);
   showElement(cardHolder);
-  if (!dealer.hasBlackjack) showElement(sumEl);
+  //if (!dealer.hasBlackjack) showElement(sumEl);
+  showElement(sumEl);
   clearCardDisplay(cardHolder);
   cardHolder.style.width = (person.hand.length * CARDSLOT) + 'px';
   for (let card of person.hand) {
@@ -301,6 +309,8 @@ function displayElement(element) {
 }
 
 function double() {
+  log('doubled down')
+  correctTableLayout();
   if ((player.chips < player.bet) || player.hasDoubled) return;
   player.hasDoubled = true;
   hideCardButtons();
@@ -311,7 +321,7 @@ function double() {
     if (player.totalWithAce > 21) player.totalWithAce = player.total;
     else player.total = player.totalWithAce;
   }
-  sumEl.textContent = player.total;
+  sumEl.textContent = `Sum: ${player.total}`;
   player.chips -= player.bet;
   player.bet += player.bet;
   chipsOwned.textContent = player.chips;
@@ -340,6 +350,7 @@ function hideSpecialButtons() {
 
 function hit() {
   log('hit()');
+  correctTableLayout();
   hideSpecialButtons();
   if (player.hasBlackjack
      || player.has21
@@ -420,9 +431,12 @@ function initializeGame() {
     messageEl.textContent = 'Place bet to begin'
     actionsDiv.style.justifyContent = 'space-around';
   }
+  document.body.classList.remove('win-game', 'lose-game');
+  if (player.hasSurrendered) chipsBet.textContent = player.previousBet;
   player.isStanding = false;
   player.isAlive = false;
   player.hasDoubled = false;
+  player.hasSurrendered = false;
   player.bet = 0;
   player.betPlaced = false;
   player.chipsPlaced = false;
@@ -483,7 +497,10 @@ function renderGame() {
   displayCards(dealer, dealerEl);
   if (checkForBlackJack()) return;
   if (player.bet <= player.chips) showElement(doubleButton);
+  showElement(surrenderButton);
   log('no blackjacks, checking player hand');
+  document.querySelector('.table-container').classList.add('move-table-left');
+  cardButtonsDiv.classList.add('move-buttons-up');
   checkPlayerHand();
 }
 
@@ -492,9 +509,13 @@ function result(result, msg) {
   messageEl.classList.add(result);
   messageEl.textContent = msg;
   player.isAlive = false;
-  if (result == 'win') player.chips += (player.bet * 2);
+  if (result == 'win') {
+    player.chips += (player.bet * 2);
+    document.body.classList.add('win-game');
+  }
   else if (result == 'push') player.chips += player.bet;
   else if (result == 'bj') player.chips += (player.bet * 2.5);
+  document.body.classList.add('lose-game');
   chipsOwned.textContent = player.chips;
   prevBetButton.textContent = `PREV (${player.previousBet})`;
   //chipsBet.textContent = 0;
@@ -517,6 +538,7 @@ function shuffleDeck() {
 
 function stand() {
   log('stand()');
+  correctTableLayout();
   hideSpecialButtons();
   if (player.hasBlackjack
      || player.has21
@@ -570,6 +592,20 @@ function startGame() {
   console.log('buttons configured and bet placed');
   
   return
+}
+
+function surrender() {
+  log('surrendered')
+  correctTableLayout();
+  hideCardButtons();
+  undisplayElement(startButton);
+  player.hasSurrendered = true;
+  player.chips += (player.bet / 2);
+  player.bet -= (player.bet / 2);
+  chipsOwned.textContent = player.chips;
+  chipsBet.textContent = player.bet;
+  result('lose', "Lose: Surrendered");
+  checkDealerHand();
 }
 
 function undisplayElement(element) {

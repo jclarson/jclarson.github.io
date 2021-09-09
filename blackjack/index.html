@@ -11,15 +11,17 @@
 <body>
   <div id="limitations">
     <p>This game has the following limitations:</p>
-    <p class="limitation">You cannot Split, Surrender, or buy Insurance.</p>
+    <p class="limitation">You cannot Split or buy Insurance.</p>
 
   </div>
   <div id="rules">Rules: Dealer hits on soft 17</div>
   <div class="game-title">Blackjack</div>
   <div id="message-el">Play a game?</div>
-  <div id="dcards-text">Dealer Cards:</div><div class="card-holder" id="dealer-el"></div>
-  <div id="pcards-text">Cards:</div><div class="card-holder" id="cards-el"></div>
-  <div id='sum-el'></div>
+  <div class="table-container">
+    <div id="dcards-text">Dealer Cards:</div><div class="card-holder" id="dealer-el"></div>
+    <div id="pcards-text">Cards:</div><div class="card-holder" id="cards-el"></div>
+    <div id='sum-el'></div>
+  </div>
   <div class="actions">
     <div class="bet-container">
       <div class="chips-to-bet">
@@ -40,13 +42,13 @@
     </div>
     <div class="buttons">
       <div class="card-buttons">
-        <button onclick="startGame()" id="start-btn">START GAME</button>
+        <button onclick="startGame()" id="start-btn">START</button>
         <button onclick="hit()" id="hit-btn">HIT ME</button>
         <button onclick="stand()" id="stand-btn">STAND</button>
         <button onclick="double()" id="double-btn">DOUBLE</button>
-        <button onclick="split()" id="split-btn">SPLIT</button>
         <button onclick="surrender()" id="surrender-btn">SURRENDER</button>
         <button onclick="insurance()" id="insurance-btn">INSURANCE</button>
+        <button onclick="split()" id="split-btn">SPLIT</button>
       </div>
       <div class="bet-buttons">
         <p id="bet-buttons-text">Place a bet to begin.</p>
