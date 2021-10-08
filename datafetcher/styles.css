@@ -1,0 +1,21 @@
+h1 {
+  text-align: center;
+}
+#main {
+  display:flex;
+  flex-direction: column;
+}
+.selectors-container {
+  display:flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+.selector {
+  margin: 10px;
+}
+
+.selector-title {
+  text-align: center;
+}
