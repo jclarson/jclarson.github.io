@@ -42,8 +42,8 @@ function addFooterInfo() {
   linktxt += ' 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1';
   linktxt += ' .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>';
   link.innerHTML = linktxt;
-  addLink('https://www.facebook.com/JasonCLarson','./f_logo_RGB-Blue_58.png', 'facebook logo');
-  addLink('https://github.com/jclarson', './github.png', 'github logo')
+  addLink('https://www.facebook.com/JasonCLarson','./images/f_logo_RGB-Blue_58.png', 'facebook logo');
+  addLink('https://github.com/jclarson', './images/github.png', 'github logo')
   
 }
 
