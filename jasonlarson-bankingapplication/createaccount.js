@@ -13,6 +13,12 @@ function CreateAccount(){
       setTimeout(() => setStatus(''),3000);
       return false;
     }
+    if (label === 'email' && !field.includes('@')) {
+      setStatus('Error: email address invalid');
+      setTimeout(() => setStatus(''),3000);
+      return false;
+    }
+
     if (label === 'password' && field.length < 8) {
       setStatus('Error: password must be at least 8 characters');
       setTimeout(() => setStatus(''),3000);
@@ -26,7 +32,7 @@ function CreateAccount(){
     if (!validate(name,     'name'))     return;
     if (!validate(email,    'email'))    return;
     if (!validate(password, 'password')) return;
-    ctx.users.push({name,email,password,balance:100,loggedIn:false, transactions:[]});
+    ctx.users.push({name,email,password,balance:100,loggedIn:false, transactions:[{date:(new Date()).toLocaleDateString(), type:"Gift", amount:100}]});
     setShow(false);
   }    
 
@@ -60,7 +66,10 @@ function CreateAccount(){
         </>
       ):(
         <>
-          <h5>Success</h5>
+          <h5>Success!</h5>
+          Welcome to your new banking home.<br/>
+          As a special gift, we've deposited $100 into your account.<br/>
+          Would you like to create another account?<br/>
           <button type="submit" className="btn btn-light" onClick={clearForm}>Add another account</button>
         </>
       )}

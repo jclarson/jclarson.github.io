@@ -12,7 +12,7 @@ function Card(props){
   }
 
   function styles() {
-    const mw = props.maxwidth ? {maxWidth: props.maxwidth} : {maxWidth: "18rem"}
+    const mw = props.maxwidth ? {maxWidth: props.maxwidth} : {maxWidth: "25rem"}
     return mw
   }
   return (
