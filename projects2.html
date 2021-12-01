@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <!-- Bootstrap CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Jason Larson's Projects</title>
+</head>
+<script src="index.js" defer></script>
+<body>
+    <div class="header-container">
+      <div class="header-item1 header-item">
+        <div class="header-text">
+            Projects
+        </div>
+      </div>
+      <div class="header-item2 header-item">
+        <img src="./images/bioPic.jpg" alt="bioPic" />
+      </div>
+    </div>
+    <div class="section-container">
+      <div class="nav-container"></div>
+
+
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card text-center">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="true" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+
+      <div class="main-container project-main-container">
+        <div class="project">
+          <a href="./atmmachine"><div class="projectname">ATM Machine</div></a>
+          <div class="projectdesc">This is a React project to simulate an ATM terminal.</div>
+        </div>
+        <div class="project">
+          <a href="./ballmover"><div class="projectname">BallMover</div></a>
+          <div class="projectdesc">This is a small JavaScript program to move a div "ball" around an area, changing size and color depending on the direction.</div>
+        </div>
+        <div class="project">
+          <a href="./blackjack"><div class="projectname">Blackjack</div></a>
+          <div class="projectdesc">This is a very simple Blackjack game.</div>
+        </div>
+        <div class="project">
+          <a href="./datafetcher/"><div class="projectname">Data Fetcher</div></a>
+          <div class="projectdesc">This is a React project to fetch data from a public API.
+            This project fetches data from the freetogame url.
+          </div>
+        </div>
+        <div class="project">
+          <a href="./pacman"><div class="projectname">Pacman</div></a>
+          <div class="projectdesc">The goal of this project was to move images around the screen, changing direction when hitting screen edges.
+            Click the image to start the movement.
+          </div>
+        </div>
+        <div class="project">
+          <a href="./pacmen"><div class="projectname">PacMen</div></a>
+          <div class="projectdesc">The goal of this project was to create multiple images and move them around the screen, changing direction when hitting
+            screen edges.
+          </div>
+        </div>
+        <div class="project">
+          <a href="./reacttictactoe"><div class="projectname">React Tic-Tac-Toe</div></a>
+          <div class="projectdesc">This is a React project to play a game of tic-tac-toe.
+            From the original code, I updated the square colors so that X is always a blue background with white letters,
+            and O is always a red background with black letters.
+            Also updated players from 0 and 1 to 1 and 2 to solve a bug where the winner could not be determined if the winner was player 0.
+          </div>
+        </div>
+        <div class="project">
+          <a href="./realtimebustracker"><div class="projectname">Real Time Bus Tracker</div></a>
+          <div class="projectdesc">This is a JavaScript program to display real-time bus information for buses of the MBTA (Massachusetts Bay Transportation Authority) on Route 1.
+            The original requirements were for displaying only one bus on the route.  I added all the buses, and updated the markers so that buses that were outbound
+            (having a direction of 1) are black, and I rotated the markers so that the blue ones (with a direction of 0) point upwards to indicate their general path
+            of travel on the route.
+          </div>
+        </div>
+        <div class="project">
+          <a href="./watchingeyes"><div class="projectname">Watching Eyes</div></a>
+          <div class="projectdesc">The goal of this project was to have 2 "eyes" that follow the mouse as it moves around the screen.</div>
+        </div>
+        <div class="project">
+          <a href="./walkboston"><div class="projectname">Boston Salaries</div></a>
+          <div class="projectdesc">The goal of this page was to pick out the top 5 earners in Boston (total salary + overtime) and list them out in the web page.
+            
+            Additionally, it identifies the number of people working in the city of Boston who earn over $100,000 and displays it on the web page as shown below: 
+            Number of people working in Boston earning over $100,000 is xxxx.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-container">
+    </div>
+</body>
+</html>

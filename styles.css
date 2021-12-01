@@ -215,6 +215,25 @@ body {
   padding: 15px 0 10px 0;
 }
 
+/* Bootstrap styles */
+.collapse {
+  &:not(.show) {
+    display: none;
+  }
+}
+
+.collapsing {
+  height: 0;
+  overflow: hidden;
+  @include transition($transition-collapse);
+
+  &.collapse-horizontal {
+    width: 0;
+    height: auto;
+    @include transition($transition-collapse-width);
+  }
+}
+
 @media screen and (min-width: 280px) {
   :root {
     --head-height: 100px;

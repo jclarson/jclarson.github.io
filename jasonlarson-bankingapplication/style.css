@@ -1,0 +1,52 @@
+.bg-orange, .bg-chartreuse, .bg-powderblue, .bg-lightpurple {
+  --bs-bg-opacity: 1;
+}
+
+.bg-orange {
+  background-color: #FBB230;
+}
+
+.bg-chartreuse {
+  background-color: #D8E04C;
+}
+
+.bg-powderblue {
+  background-color: #CBE9EF;
+}
+
+.bg-lightpurple {
+  background-color: #9899C5;
+}
+
+.active {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.cardlink {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: larger;
+  margin: 0;
+  padding: 0;
+}
+
+table, th, td {
+  border: .01em solid lightslategray;
+  border-collapse: collapse;
+  padding: 10px;
+  margin: 2px;
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  padding: 1px 10px;
+}
+
+table {
+  width: 100%;
+}

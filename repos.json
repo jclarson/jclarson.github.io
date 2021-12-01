@@ -1,0 +1,25 @@
+{
+  "repos": [
+    {
+      "image": "http://github.com/jclarson/AtmMachine/images/atm.png",
+      "name": "ATM Machine",
+      "description": "This is a React project to simulate an ATM terminal. From the original code, I added validation, a selector for the action, as well as an error message that displays if the data is invalid.",
+      "repoLink": "http://github.com/jclarson/AtmMachine",
+      "liveLink": "http://jclarson.github.io/atmmachine"
+    },
+    {
+      "image": "http://github.com/jclarson/BallMover/balls.png",
+      "name": "Ball Mover",
+      "description": "This is a small JavaScript program to move a div 'ball' around an area, changing size and color depending on the direction.",
+      "repoLink": "http://github.com/jclarson/BallMover",
+      "liveLink": "http://jclarson.github.io/ballmover"
+    },
+    {
+      "image": "http://github.com/jclarson/Blackjack/cards.png",
+      "name": "Blackjack",
+      "description": "This is a small JavaScript program to move a div 'ball' around an area, changing size and color depending on the direction.",
+      "repoLink": "http://github.com/jclarson/Blackjack",
+      "liveLink": "http://jclarson.github.io/blackjack"
+    }
+  ]
+}
